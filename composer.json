@@ -72,6 +72,12 @@
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
         ],
+        "post-install-cmd": [
+            "@php artisan storage:link || true",
+            "@php artisan config:cache || true",
+            "@php artisan route:cache || true",
+            "@php artisan view:cache || true"
+        ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ],
@@ -80,7 +86,8 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
-        ]
+        ],
+        "start": "php artisan serve --host 0.0.0.0 --port ${PORT:-8000}"
     },
     "extra": {
         "laravel": {
